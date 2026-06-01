@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net10.0-windows</TargetFramework>
+		<PublishSingleFile>true</PublishSingleFile>
+		<SelfContained>true</SelfContained>
+		<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UseWPF>true</UseWPF>
+		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
+		<ApplicationIcon>mp3_cevirici_ikon.ico</ApplicationIcon>
+		<AssemblyTitle>Mp3Cevirici</AssemblyTitle>
+	</PropertyGroup>
+  <ItemGroup>
+    <None Remove="mp3_cevirici_ikon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="mp3_cevirici_ikon.ico" />
+  </ItemGroup>
+
+</Project>
