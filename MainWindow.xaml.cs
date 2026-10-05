@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
@@ -370,9 +370,18 @@ namespace MP3Converter
 
                     string playlistArg = isPlaylistMode ? "--yes-playlist" : "--no-playlist";
 
+                    string ultimateProtectionArgs = "--extractor-args \"youtube:player_client=android,ios,web_creator\" " +
+                                                   "--socket-timeout 10 " +
+                                                   "--retries 3 " +
+                                                   "--fragment-retries 3 " +
+                                                   "--sleep-requests 1.5 " +
+                                                   "--sleep-interval 2 " +
+                                                   "--max-sleep-interval 4 " +
+                                                   "--user-agent \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36\"";
+
                     string ytDlpArgs = selectedFormat == 0
-                        ? $"{playlistArg} --newline --progress-template \"[PROGRESS] %(progress._percent_str)s\" -x --audio-format mp3 --audio-quality 4 --postprocessor-args \"ExtractAudio:-b:a 160k\" --embed-metadata --embed-thumbnail --ffmpeg-location \"{safeEnginePath}\" --windows-filenames -o \"{safeOutputFolder}\\%(title)s.%(ext)s\" \"{url}\""
-                        : $"{playlistArg} --newline --progress-template \"[PROGRESS] %(progress._percent_str)s\" -f \"bestvideo+bestaudio[ext=mp4]/best\" --merge-output-format mp4 --embed-metadata --embed-thumbnail --ffmpeg-location \"{safeEnginePath}\" --windows-filenames -o \"{safeOutputFolder}\\%(title)s.%(ext)s\" \"{url}\"";
+                        ? $"{playlistArg} {ultimateProtectionArgs} --newline --progress-template \"[PROGRESS] %(progress._percent_str)s\" -x --audio-format mp3 --audio-quality 4 --postprocessor-args \"ExtractAudio:-b:a 160k\" --embed-metadata --embed-thumbnail --ffmpeg-location \"{safeEnginePath}\" --windows-filenames -o \"{safeOutputFolder}\\%(title)s.%(ext)s\" \"{url}\""
+                        : $"{playlistArg} {ultimateProtectionArgs} --newline --progress-template \"[PROGRESS] %(progress._percent_str)s\" -f \"bestvideo+bestaudio[ext=mp4]/best\" --merge-output-format mp4 --embed-metadata --embed-thumbnail --ffmpeg-location \"{safeEnginePath}\" --windows-filenames -o \"{safeOutputFolder}\\%(title)s.%(ext)s\" \"{url}\"";
 
                     ProcessStartInfo startInfo = new ProcessStartInfo
                     {
